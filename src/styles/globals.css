@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: #090E16;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-links {
+    line-height: normal;
+    text-align: center;
+    font-weight: 700;
+}
+
+.nav-links:hover {
+    color: #7b4ae280;
+}
