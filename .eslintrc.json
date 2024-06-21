@@ -1,12 +1,8 @@
 {
-<<<<<<< HEAD
-  "extends": "next/core-web-vitals"
-=======
   "extends": "next/core-web-vitals",
   "parserOptions": {
     "babelOptions": {
       "presets": ["next/babel"]
     }
   }
->>>>>>> origin/main
 }
