@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter  } from "react-icons/fa";
 
 const socials = [
-  { icon: <FaGithub />, path: "" },
-  { icon: <FaLinkedin />, path: "" },
+  { icon: <FaGithub />, path: "https://github.com/Takeru9016" },
+  { icon: <FaLinkedin />, path: "https://www.linkedin.com/in/sahiljadhav" },
+  { icon: <FaTwitter  />, path: "https://x.com/dev_takeru" },
 ];
 
 type SocialsProps = {
