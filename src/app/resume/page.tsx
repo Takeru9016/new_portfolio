@@ -23,7 +23,7 @@ import {
 const about = {
   title: "About Me",
   description:
-    "I am a full stack developer with a passion for creating web applications. I have experience with a variety of technologies including React, Node.js, Express, and MongoDB. I am always looking to learn new technologies and improve my skills.",
+    "I am a full stack developer passionate about creating web applications. I have experience with various technologies including React, Node.js, Express, and MongoDB. I am always looking to learn new technologies and improve my skills.",
   info: [
     {
       fieldName: "Name",
@@ -56,7 +56,7 @@ const experience = {
   icon: "",
   title: "My Experience",
   description:
-    "I have worked as a full stack developer for 3+ years. I have experience with a variety of technologies including React, Node.js, Express, and MongoDB.",
+    "I have worked as a full stack developer for 2+ years. I have experience with a variety of technologies including React, Node.js, Express, and MongoDB.",
   items: [
     {
       title: "Full Stack Developer",
@@ -163,10 +163,10 @@ export default function Resume() {
           className="flex flex-col gap-[60px] xl:flex-row"
         >
           <TabsList className="mx-auto flex w-full max-w-[380px] flex-col gap-6 xl:mx-0">
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="about">About Me</TabsTrigger>
+            <TabsTrigger value="experience">Experience</TabsTrigger>
+            <TabsTrigger value="skills">Skills</TabsTrigger>
+            <TabsTrigger value="education">Education</TabsTrigger>
           </TabsList>
 
           <div className="min-h-[70vh] w-full">
