@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build && sanity deploy",
+    "build": "next build",
+    "deploy": "sanity deploy",
     "generate": "sanity schema extract --enforce-required-fields && sanity typegen generate",
     "start": "next start",
     "lint": "next lint"
