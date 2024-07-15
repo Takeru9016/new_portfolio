@@ -8,25 +8,49 @@ const services = [
   {
     title: "Web Development",
     value: "01",
-    description: "",
+    description: "Creating responsive and dynamic websites.",
+    details: [
+      "Requirement gathering",
+      "Design and prototyping",
+      "Development and testing",
+      "Deployment and maintenance",
+    ],
     href: "",
   },
   {
     title: "UI/UX Design",
     value: "02",
-    description: "",
+    description: "Crafting intuitive and visually appealing interfaces.",
+    details: [
+      "User research",
+      "Wireframing",
+      "Visual design",
+      "Usability testing",
+    ],
     href: "",
   },
   {
     title: "Content Writing",
     value: "03",
-    description: "",
+    description: "Producing engaging and SEO-friendly content.",
+    details: [
+      "Topic research",
+      "Content planning",
+      "Writing and editing",
+      "SEO optimization",
+    ],
     href: "",
   },
   {
     title: "SEO",
     value: "04",
-    description: "",
+    description: "Optimizing websites for search engines.",
+    details: [
+      "Keyword research",
+      "On-page optimization",
+      "Link building",
+      "Performance tracking",
+    ],
     href: "",
   },
 ];

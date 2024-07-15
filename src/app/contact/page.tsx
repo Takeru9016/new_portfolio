@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import { CiInstagram, CiLinkedin, CiMail, CiTwitter } from "react-icons/ci";
 import { FaGithubSquare } from "react-icons/fa";
 
@@ -22,27 +21,32 @@ const info = [
   {
     icon: <CiMail />,
     title: "Email",
-    content: "timetocode@gmail.com",
+    content: "timetocode22@gmail.com",
+    url: "mailto:timetocode22@gmail.com",
   },
   {
     icon: <FaGithubSquare />,
     title: "Github",
-    content: "https://github.com/Takeru9016",
+    content: "Takeru9016",
+    url: "https://github.com/Takeru9016",
   },
   {
     icon: <CiInstagram />,
     title: "Instagram",
-    content: "",
+    content: "Dev_with_Takeru",
+    url: "https://instagram.com/dev_with_takeru/",
   },
   {
     icon: <CiLinkedin />,
     title: "LinkedIn",
-    content: "https://linkedin.in/sahiljadhav",
+    content: "Sahil Jadhav",
+    url: "https://linkedin.com/in/sahiljadhav",
   },
   {
     icon: <CiTwitter />,
     title: "Twitter",
-    content: "",
+    content: "@dev_takeru",
+    url: "https://x.com/dev_takeru",
   },
 ];
 
@@ -104,13 +108,20 @@ export default function Contact() {
             <ul className="flex flex-col gap-10">
               {info.map((item, index) => (
                 <li key={index} className="flex items-center gap-6">
-                  <div className="flex h-[52px] w-[52px] items-center justify-center rounded-md bg-[#27272c] text-accent xl:h-[72px] xl:w-[72px]">
-                    <div className="text-[28px]">{item.icon}</div>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-white/60">{item.title}</p>
-                    <h3 className="text-xl text-white">{item.content}</h3>
-                  </div>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-6"
+                  >
+                    <div className="flex h-[52px] w-[52px] items-center justify-center rounded-md bg-[#27272c] text-accent xl:h-[72px] xl:w-[72px]">
+                      <div className="text-[28px]">{item.icon}</div>
+                    </div>
+                    <div className="flex-1 text-left">
+                      <p className="text-white/60">{item.title}</p>
+                      <h3 className="text-xl text-white">{item.content}</h3>
+                    </div>
+                  </a>
                 </li>
               ))}
             </ul>

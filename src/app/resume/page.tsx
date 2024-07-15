@@ -53,7 +53,6 @@ const about = {
 };
 
 const experience = {
-  icon: "",
   title: "My Experience",
   description:
     "I have worked as a full stack developer for 2+ years. I have experience with a variety of technologies including React, Node.js, Express, and MongoDB.",
@@ -61,35 +60,39 @@ const experience = {
     {
       title: "Full Stack Developer",
       subtitle: "Freelancer",
-      date: "2021-present",
+      duration: "2021-present",
     },
     {
       title: "Intern Frontend Developer",
       subtitle: "Innoquad",
-      date: "2023 (3 months)",
+      duration: "2023 (3 months)",
     },
     {
       title: "Video Editor",
       subtitle: "Goregaon Sports Club",
-      date: "2023-present",
+      duration: "2023-present",
     },
   ],
 };
 
 const education = {
-  icon: "",
   title: "My Education",
   description:
     "I have a Bachelor's degree in Computer Science from the University of Mumbai.",
   items: [
     {
+      title: "Master's Degree",
+      specailization: "Information Technology",
+      date: "2024-2026",
+    },
+    {
       title: "Bachelor's Degree",
-      subtitle: "Artificial Intelligence and Machine Learning",
+      specailization: "Artificial Intelligence and Machine Learning",
       date: "2021-2024",
     },
     {
       title: "Diploma",
-      subtitle: "Computer Engineering",
+      specailization: "Computer Engineering",
       date: "2018-2021",
     },
   ],
@@ -185,7 +188,7 @@ export default function Resume() {
                           key={index}
                           className="flex h-[184px] flex-col items-center justify-center gap-1 rounded-xl bg-[#232329] px-10 py-6 lg:items-start"
                         >
-                          <h4 className="text-accent">{item.date}</h4>
+                          <h4 className="text-accent">{item.duration}</h4>
                           <h3 className="min-h-[60px] max-w-[260px] text-center text-xl lg:text-left">
                             {item.title}
                           </h3>
@@ -221,7 +224,9 @@ export default function Resume() {
                           </h3>
                           <div className="flex items-center gap-3">
                             <span className="h-[6px] w-[6px] rounded-full bg-accent"></span>
-                            <p className="text-white/60">{item.subtitle}</p>
+                            <p className="text-white/60">
+                              {item.specailization}
+                            </p>
                           </div>
                         </li>
                       );

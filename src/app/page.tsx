@@ -1,9 +1,53 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { FileDownIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Socials, Photo, Stats } from "@/components";
+import { client } from "../../sanity/lib/client";
+
+interface Resume {
+  title: string;
+  resumeFile: {
+    asset: {
+      _ref: string;
+      url: string;
+      originalFilename: string;
+    };
+  };
+}
 
 export default function Home() {
+  const [resume, setResume] = useState<Resume | null>(null);
+
+  useEffect(() => {
+    const fetchResume = async () => {
+      const query = `*[_type == "resume"][0]{
+        title,
+        "resumeFile": {
+          "asset": resumeFile.asset->{
+            _ref,
+            url,
+            originalFilename
+          }
+        }
+      }`;
+      const result = await client.fetch(query);
+      setResume(result);
+    };
+
+    fetchResume();
+  }, []);
+
+  const handleDownload = () => {
+    if (resume && resume.resumeFile && resume.resumeFile.asset) {
+      const { url, originalFilename } = resume.resumeFile.asset;
+      const downloadUrl = `${url}?dl=${originalFilename}`;
+      window.open(downloadUrl, "_blank");
+    }
+  };
+
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
@@ -26,6 +70,8 @@ export default function Home() {
                 variant="outline"
                 size="lg"
                 className="flex items-center gap-2 uppercase"
+                onClick={handleDownload}
+                disabled={!resume}
               >
                 <span>Download CV</span>
                 <FileDownIcon className="text-xl" />
