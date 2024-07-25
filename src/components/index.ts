@@ -8,3 +8,4 @@ export { default as Stairs } from "./Stairs";
 export { default as StairTransition } from "./StairTransition";
 export { default as Stats } from "./Stats";
 export { default as WorkSlider } from "./WorkSlider";
+export { default as portableTextComponents } from "./portableComponents";

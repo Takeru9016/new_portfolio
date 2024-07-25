@@ -46,12 +46,6 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
 export type Skills = {
   _id: string;
   _type: "skills";
@@ -65,14 +59,13 @@ export type Skills = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
     _type: "image";
   };
   title?: string;
 };
 
 export type Service = {
+  imageUrl: any;
   _id: string;
   _type: "service";
   _createdAt: string;
@@ -116,6 +109,23 @@ export type Service = {
     _type: "block";
     _key: string;
   }>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    alt?: string;
+    _type: "image";
+  };
+  slug: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
 };
 
 export type Resume = {
@@ -192,29 +202,11 @@ export type Projects = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
     _type: "image";
   };
   stack?: Array<string>;
   Live?: string;
   Github?: string;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type SanityImageAsset = {
@@ -274,14 +266,12 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
-  | Slug
   | Skills
   | Service
+  | Slug
   | Resume
   | SanityFileAsset
   | Projects
-  | SanityImageCrop
-  | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata

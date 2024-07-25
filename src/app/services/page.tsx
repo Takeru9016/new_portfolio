@@ -1,100 +1,98 @@
 "use client";
 
-import Link from "next/link";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { BsArrowDownRight } from "react-icons/bs";
+import { useInView } from "react-intersection-observer";
+import { PortableText } from "@portabletext/react";
 
-const services = [
-  {
-    title: "Web Development",
-    value: "01",
-    description: "Creating responsive and dynamic websites.",
-    details: [
-      "Requirement gathering",
-      "Design and prototyping",
-      "Development and testing",
-      "Deployment and maintenance",
-    ],
-    href: "",
-  },
-  {
-    title: "UI/UX Design",
-    value: "02",
-    description: "Crafting intuitive and visually appealing interfaces.",
-    details: [
-      "User research",
-      "Wireframing",
-      "Visual design",
-      "Usability testing",
-    ],
-    href: "",
-  },
-  {
-    title: "Content Writing",
-    value: "03",
-    description: "Producing engaging and SEO-friendly content.",
-    details: [
-      "Topic research",
-      "Content planning",
-      "Writing and editing",
-      "SEO optimization",
-    ],
-    href: "",
-  },
-  {
-    title: "SEO",
-    value: "04",
-    description: "Optimizing websites for search engines.",
-    details: [
-      "Keyword research",
-      "On-page optimization",
-      "Link building",
-      "Performance tracking",
-    ],
-    href: "",
-  },
-];
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Service } from "../../../sanity.types";
+import { client } from "../../../sanity/lib/client";
+import { portableTextComponents } from "@/components";
+
+async function fetchServices(): Promise<Service[]> {
+  const query = `*[_type == "service"] | order(value asc) {
+    _id,
+    title,
+    value,
+    description,
+    details,
+    imageUrl
+  }`;
+  return client.fetch(query);
+}
 
 export default function Services() {
+  const [services, setServices] = useState<Service[]>([]);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    fetchServices().then(setServices);
+  }, []);
+
   return (
-    <section className="flex min-h-[80vh] flex-col justify-center py-12 xl:py-0">
+    <section
+      ref={ref}
+      className="flex min-h-[80vh] flex-col justify-center py-12 xl:py-0"
+    >
       <div className="container mx-auto">
         <motion.div
-          className="grid grid-cols-1 gap-[60px] md:grid-cols-2"
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
-          }}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, staggerChildren: 0.1 }}
         >
-          {services.map((service, index) => {
-            return (
-              <div
-                key={index}
-                className="group flex flex-1 flex-col justify-center gap-6"
-              >
-                <div className="flex w-full items-center justify-between">
-                  <div className="text-outline group-hover:text-outline-hover text-5xl font-extrabold text-transparent transition-all duration-500">
-                    {service.value}
-                  </div>
-                  <Link
-                    href={service.href}
-                    className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white transition-all duration-500 hover:-rotate-45 group-hover:bg-accent"
-                  >
-                    <BsArrowDownRight className="text-3xl text-primary" />
-                  </Link>
-                </div>
-
-                <h2 className="text-[42px] font-bold leading-none text-white transition-all duration-500 group-hover:text-accent">
-                  {service.title}
-                </h2>
-
-                <p className="text-white/60">{service.description}</p>
-
-                <div className="w-full border-b border-white/20"></div>
-              </div>
-            );
-          })}
+          {services.map((service) => (
+            <motion.div
+              key={service._id}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              <Card className="group h-full transition-all duration-300 hover:shadow-lg">
+                <CardHeader>
+                  <CardTitle>
+                    <span className="text-outline group-hover:text-outline-hover text-4xl font-extrabold transition-all duration-500">
+                      {String(service.value).padStart(2, "0")}
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {service.imageUrl && (
+                    <Image
+                      src={service.imageUrl}
+                      alt={service.title}
+                      width={400}
+                      height={200}
+                      className="rounded-md object-cover"
+                      loading="lazy"
+                    />
+                  )}
+                  <h2 className="text-3xl font-bold transition-all duration-500 group-hover:text-accent">
+                    {service.title}
+                  </h2>
+                  {service.description && (
+                    <div className="text-muted-foreground">
+                      <PortableText value={service.description} />
+                    </div>
+                  )}
+                  {service.details && (
+                    <div className="space-y-2">
+                      <PortableText
+                        value={service.details}
+                        components={portableTextComponents}
+                      />
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

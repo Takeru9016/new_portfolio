@@ -27,9 +27,6 @@ export const projects = defineType({
       name: "imgUrl",
       title: "Image",
       type: "image",
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: "stack",

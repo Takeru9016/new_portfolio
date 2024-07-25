@@ -15,7 +15,7 @@ export const services = defineType({
       name: "value",
       title: "Value",
       type: "number",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().min(1).max(99),
     }),
     defineField({
       name: "description",
@@ -29,5 +29,33 @@ export const services = defineType({
       type: "array",
       of: [{ type: "block" }],
     }),
+    defineField({
+      name: "image",
+      title: "Service Image",
+      type: "image",
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative Text",
+        },
+      ],
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      media: "image",
+    },
+  },
 });
