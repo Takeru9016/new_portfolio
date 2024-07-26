@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { PortableText } from "@portabletext/react";
@@ -18,7 +17,6 @@ async function fetchServices(): Promise<Service[]> {
     value,
     description,
     details,
-    imageUrl
   }`;
   return client.fetch(query);
 }
@@ -57,22 +55,12 @@ export default function Services() {
               <Card className="group h-full transition-all duration-300 hover:shadow-lg">
                 <CardHeader>
                   <CardTitle>
-                    <span className="text-outline group-hover:text-outline-hover text-4xl font-extrabold transition-all duration-500">
+                    <span className="text-outline text-4xl font-extrabold transition-all duration-500">
                       {String(service.value).padStart(2, "0")}
                     </span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {service.imageUrl && (
-                    <Image
-                      src={service.imageUrl}
-                      alt={service.title}
-                      width={400}
-                      height={200}
-                      className="rounded-md object-cover"
-                      loading="lazy"
-                    />
-                  )}
                   <h2 className="text-3xl font-bold transition-all duration-500 group-hover:text-accent">
                     {service.title}
                   </h2>

@@ -46,6 +46,33 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Education = {
+  _id: string;
+  _type: "education";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  specialization: string;
+  date: string;
+  institution: string;
+};
+
+export type About = {
+  _id: string;
+  _type: "about";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description: string;
+  info: Array<{
+    fieldName: string;
+    fieldValue: string;
+    _key: string;
+  }>;
+};
+
 export type Skills = {
   _id: string;
   _type: "skills";
@@ -65,7 +92,6 @@ export type Skills = {
 };
 
 export type Service = {
-  imageUrl: any;
   _id: string;
   _type: "service";
   _createdAt: string;
@@ -109,16 +135,6 @@ export type Service = {
     _type: "block";
     _key: string;
   }>;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    alt?: string;
-    _type: "image";
-  };
   slug: Slug;
 };
 
@@ -266,6 +282,8 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
+  | Education
+  | About
   | Skills
   | Service
   | Slug

@@ -30,18 +30,6 @@ export const services = defineType({
       of: [{ type: "block" }],
     }),
     defineField({
-      name: "image",
-      title: "Service Image",
-      type: "image",
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
-      ],
-    }),
-    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -52,10 +40,4 @@ export const services = defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      media: "image",
-    },
-  },
 });

@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 import { defineType, defineField } from "sanity";
 
 export const experience = defineType({
