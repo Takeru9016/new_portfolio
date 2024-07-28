@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FileDownIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { FlipWords } from "@/components/ui/flip-words";
 import { Socials, Photo, Stats } from "@/components";
 import { client } from "../../sanity/lib/client";
 
@@ -20,6 +21,7 @@ interface Resume {
 
 export default function Home() {
   const [resume, setResume] = useState<Resume | null>(null);
+  const words = ["#software_dev", "#full_stack_dev", "#graphic_designer"];
 
   useEffect(() => {
     const fetchResume = async () => {
@@ -53,7 +55,7 @@ export default function Home() {
       <div className="container mx-auto h-full">
         <div className="flex flex-col items-center justify-between xl:flex-row xl:pb-24 xl:pt-8">
           <div className="order-2 text-center xl:order-none xl:text-left">
-            <span className="text-xl">Software Developer</span>
+            <FlipWords className="text-3xl text-white" words={words} />
             <h1 className="h1 mb-6">
               Hello I&apos;m <br />{" "}
               <span className="text-accent">Sahil Jadhav</span>
@@ -64,7 +66,6 @@ export default function Home() {
               user-friendly interfaces and experiences that are easy to use and
               visually appealing.
             </p>
-
             <div className="flex flex-col items-center gap-8 xl:flex-row">
               <Button
                 variant="outline"

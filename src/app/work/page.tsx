@@ -70,13 +70,13 @@ export default function Work() {
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row xl:gap-[30px]">
           <div className="order-2 flex w-full flex-col xl:order-none xl:h-[460px] xl:w-[50%] xl:justify-between">
-            <div className="flex h-[50%] flex-col gap-[30px]">
+            <div className="flex h-full flex-col gap-[30px]">
               <div className="text-outline text-8xl font-extrabold leading-none text-transparent">
                 {String(projects.indexOf(currentProject) + 1).padStart(2, "0")}
               </div>
 
               <h2 className="text-[42px] font-bold capitalize leading-none text-white transition-all duration-500 group-hover:text-accent">
-                {currentProject.category} Project
+                {currentProject.category}
               </h2>
 
               <div className="text-white/60">
@@ -88,7 +88,7 @@ export default function Work() {
                 )}
               </div>
 
-              <ul className="flex gap-4">
+              <ul className="flex flex-wrap gap-4">
                 {currentProject.stack?.map((tech, index) => (
                   <li
                     key={index}
@@ -143,15 +143,16 @@ export default function Work() {
             >
               {projects.map((project) => (
                 <SwiperSlide key={project._id} className="w-full">
-                  <div className="group relative flex h-[460px] items-center justify-center bg-pink-50/20">
+                  <div className="group relative flex h-[350px] items-center justify-center bg-pink-50/20">
                     <div className="absolute bottom-0 top-0 z-10 h-full w-full bg-black/10"></div>
                     <div className="relative h-full w-full">
                       {project.imgUrl && (
                         <Image
                           src={urlForImage(project.imgUrl)}
                           alt={project.title}
-                          fill
-                          className="object-fill"
+                          layout="fill"
+                          objectFit="contain"
+                          className="p-4"
                         />
                       )}
                     </div>

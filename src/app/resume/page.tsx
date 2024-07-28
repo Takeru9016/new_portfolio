@@ -125,13 +125,14 @@ export default function Resume() {
                     <li key={skill._id} className="flex items-center gap-3">
                       <TooltipProvider delayDuration={100}>
                         <Tooltip>
-                          <TooltipTrigger className="group flex h-[150px] w-full items-center justify-center rounded-xl bg-[#232329]">
+                          <TooltipTrigger className="group flex h-[100px] w-[100px] items-center justify-center rounded-xl bg-white/20">
                             <div className="text-6xl transition-all duration-300 group-hover:text-accent">
                               {skill.icon && skill.icon.asset && (
                                 <Image
                                   src={urlForImage(skill.icon)}
-                                  // alt={skill.title}
-                                  alt="Skill Icon"
+                                  alt={skill.title || "Skill Icon"}
+                                  width={64}
+                                  height={64}
                                   className="h-16 w-16 object-contain"
                                 />
                               )}
