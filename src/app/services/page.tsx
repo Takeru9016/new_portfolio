@@ -7,7 +7,7 @@ import {
   ModalContent,
   ModalTrigger,
 } from "@/components/ui/animated-modal";
-import { BsArrowDownRight, BsX } from "react-icons/bs";
+import { BsArrowDownRight, } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { PortableText } from "@portabletext/react";
 import { Service } from "../../../sanity.types";

@@ -44,8 +44,15 @@ export default function Resume() {
           client.fetch<Education[]>(educationQuery),
         ]);
 
+        // Sort skills alphabetically by title, with error handling
+        const sortedSkills = fetchedSkills.sort((a, b) => {
+          const titleA = a.title?.toLowerCase() || "";
+          const titleB = b.title?.toLowerCase() || "";
+          return titleA.localeCompare(titleB);
+        });
+
         setExperiences(fetchedExperiences);
-        setSkills(fetchedSkills);
+        setSkills(sortedSkills);
         setAbout(fetchedAbout);
         setEducation(fetchedEducation);
       } catch (error) {
@@ -120,32 +127,38 @@ export default function Resume() {
                   </p>
                 </div>
 
-                <ul className="grid grid-cols-2 gap-4 sm:*:grid-cols-3 md:grid-cols-4 xl:gap-[30px]">
-                  {skills.map((skill) => (
-                    <li key={skill._id} className="flex items-center gap-3">
-                      <TooltipProvider delayDuration={100}>
-                        <Tooltip>
-                          <TooltipTrigger className="group flex h-[100px] w-[100px] items-center justify-center rounded-xl bg-white/20">
-                            <div className="text-6xl transition-all duration-300 group-hover:text-accent">
-                              {skill.icon && skill.icon.asset && (
-                                <Image
-                                  src={urlForImage(skill.icon)}
-                                  alt={skill.title || "Skill Icon"}
-                                  width={64}
-                                  height={64}
-                                  className="h-16 w-16 object-contain"
-                                />
-                              )}
-                            </div>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p className="capitalize">{skill.title}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    </li>
-                  ))}
-                </ul>
+                <ScrollArea className="h-[400px] rounded-xl bg-accent/10 p-4">
+                  {/* Adjust the height as needed */}
+                  <ul className="grid grid-cols-2 justify-center gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 xl:gap-[30px]">
+                    {skills.map((skill) => (
+                      <li
+                        key={skill._id}
+                        className="flex items-center justify-center gap-3"
+                      >
+                        <TooltipProvider delayDuration={100}>
+                          <Tooltip>
+                            <TooltipTrigger className="group flex h-[100px] w-[100px] items-center justify-center rounded-xl bg-white">
+                              <div className="text-6xl transition-all duration-300 group-hover:text-accent">
+                                {skill.icon && skill.icon.asset && (
+                                  <Image
+                                    src={urlForImage(skill.icon)}
+                                    alt={skill.title || "Skill Icon"}
+                                    width={64}
+                                    height={64}
+                                    className="h-16 w-16 object-contain"
+                                  />
+                                )}
+                              </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="capitalize">{skill.title}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </li>
+                    ))}
+                  </ul>
+                </ScrollArea>
               </div>
             </TabsContent>
 
